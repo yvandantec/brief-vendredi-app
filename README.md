@@ -8,7 +8,6 @@ Application web installable (PWA) qui affiche le Brief du vendredi et enregistre
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | L'app (interface, lecture des données, envoi des avis, réglages) |
+| `index.html` | L'app : top 3, onglets Streaming, Cinéma (avec vue « Par salle »), Sorties, Sport, Catalogue par genre, À voir, Mes avis ; envoi des avis ; réglages |
 | `manifest.webmanifest`, `icons/` | Installation sur l'écran d'accueil |
 | `sw.js` | Fonctionnement hors ligne (cache de l'app) |
-| `test/` | Page de test de connexion (à supprimer après la bascule) |

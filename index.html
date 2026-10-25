@@ -18,6 +18,8 @@
   --fg:#1d1d1f;
   --muted:#6e6e73;
   --muted-strong:#515154;
+  --c-streaming:#6a4bc4;--c-cinema:#c0392b;--c-sorties:#9a5a00;--c-sport:#23784a;--c-catalogue:#6a4bc4;
+  --top1-bg:#1d1d1f;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;
   --line:#d2d2d7;
   --soft:#ebebef;
   --edge:rgba(0,0,0,0);
@@ -33,12 +35,12 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#000000;--surface:#1c1c1e;--fg:#f5f5f7;--muted:#98989d;--muted-strong:#aeaeb2;--line:#3a3a3c;--soft:#2c2c2e;--edge:#2c2c2e;
-    --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;color-scheme:dark;
+    --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;--c-streaming:#b6a3ff;--c-cinema:#ff8f80;--c-sorties:#f0b350;--c-sport:#72d29d;--c-catalogue:#b6a3ff;--top1-bg:#2c2c2e;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#000000;--surface:#1c1c1e;--fg:#f5f5f7;--muted:#98989d;--muted-strong:#aeaeb2;--line:#3a3a3c;--soft:#2c2c2e;--edge:#2c2c2e;
-  --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;color-scheme:dark;
+  --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;--c-streaming:#b6a3ff;--c-cinema:#ff8f80;--c-sorties:#f0b350;--c-sport:#72d29d;--c-catalogue:#b6a3ff;--top1-bg:#2c2c2e;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--font-text);font-size:15px;line-height:1.47;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
@@ -85,10 +87,12 @@ main{padding-block:36px 72px;display:flex;flex-direction:column;gap:64px}
 /* Top 3 */
 .top{list-style:none;margin:0;padding:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
 .top-card{height:100%;display:grid;align-content:start;gap:6px;padding:24px;border-radius:24px;background:var(--surface);border:1px solid var(--edge);color:var(--fg);text-decoration:none}
-.top li:first-child .top-card{background:var(--inv-bg);color:var(--inv-fg);border-color:var(--inv-bg)}
-.rank{font-family:var(--font-display);font-size:56px;font-weight:200;line-height:1;color:var(--muted);letter-spacing:-.03em}
-.top li:first-child .rank,.top li:first-child .top-dom,.top li:first-child .top-meta,.top li:first-child .top-why,.top li:first-child .top-note small{color:var(--inv-muted)}
-.top-dom{margin-top:10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.top li:first-child .top-card{background:var(--top1-bg);color:var(--top1-fg);border-color:var(--top1-bg)}
+.top-card{border-top:4px solid var(--dc,var(--line))}
+.top li:first-child .top-card{border-top-color:var(--dc,var(--line))}
+.rank{font-family:var(--font-display);font-size:30px;font-weight:300;line-height:1;color:var(--muted);letter-spacing:-.03em}
+.top li:first-child .rank,.top li:first-child .top-meta,.top li:first-child .top-why,.top li:first-child .top-note small{color:var(--top1-muted)}
+.top-dom{margin-top:6px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dc,var(--muted))}
 .top-title{font-family:var(--font-display);font-size:21px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
 .top-meta{font-size:13px;color:var(--muted)}
 .top-note{font-size:15px;font-weight:600}
@@ -101,7 +105,8 @@ main{padding-block:36px 72px;display:flex;flex-direction:column;gap:64px}
 .card.flash{box-shadow:0 0 0 2px var(--fg)}
 .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .meta{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:13px;color:var(--muted);min-width:0}
-.meta span+span{border-left:1px solid var(--line);padding-left:10px}
+.meta span+span::before{content:", ";margin-left:-10px}
+.meta{gap:2px 10px}
 .score{flex:none;text-align:right;line-height:1}
 .score b{font-family:var(--font-display);font-size:24px;font-weight:600;letter-spacing:-.02em}
 .score span{font-size:12px;color:var(--muted);margin-left:2px}
@@ -150,6 +155,35 @@ main{padding-block:36px 72px;display:flex;flex-direction:column;gap:64px}
 .sl-films span{flex:none;font-size:13px;color:var(--muted)}
 .sl-none{font-size:14px;color:var(--muted)}
 .sl .lk{margin-top:auto}
+
+/* Couleurs par domaine */
+.d-streaming{--dc:var(--c-streaming)}.d-cinema{--dc:var(--c-cinema)}.d-sorties{--dc:var(--c-sorties)}.d-sport{--dc:var(--c-sport)}.d-catalogue{--dc:var(--c-catalogue)}
+.dom{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dc,var(--muted))}
+.dom::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dc,var(--muted))}
+.dom .when{font-weight:600;letter-spacing:0;text-transform:none;font-size:13px;color:var(--fg)}
+.dom .when::before{content:"";display:inline-block;width:1px;height:10px;background:var(--line);margin:0 8px 0 2px;vertical-align:-1px}
+.sec-head h2.dh{display:flex;align-items:center;gap:12px}
+.sec-head h2.dh::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--dc)}
+.tab.d-streaming[aria-selected="true"],.tab.d-cinema[aria-selected="true"],.tab.d-sorties[aria-selected="true"],.tab.d-sport[aria-selected="true"],.tab.d-catalogue[aria-selected="true"]{background:var(--dc);color:var(--bg)}
+.card{border-top:3px solid var(--dc,var(--edge))}
+.card-id{display:grid;gap:6px;min-width:0}
+.card-sub{font-size:13.5px;color:var(--muted);margin-top:-4px;line-height:1.45}
+.card-sub b{font-weight:600;color:var(--fg)}
+.top-meta{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc.low b{color:var(--muted)}
+.sc.low b::after{content:"*";font-size:14px;margin-left:1px}
+.lowconf{font-size:12px;color:var(--muted)}
+.more{border-top:1px solid var(--soft);padding-top:10px}
+.more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);list-style:none;display:inline-flex;align-items:center;gap:6px;min-height:32px}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"";width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
+.more[open] summary::before{transform:rotate(45deg)}
+.more-body{display:grid;gap:10px;padding-top:6px}
+.act.dots{font-size:18px;letter-spacing:1px}
+.sync{font-size:12px;color:var(--muted);align-self:center;margin-left:auto}
+.cat-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--dc);text-decoration:none;background:none;border:0;padding:0;cursor:pointer;min-height:36px}
+.cat-link:hover{text-decoration:underline;text-underline-offset:3px}
+.tag.new{background:var(--dc);color:var(--surface)}
 
 /* Avis */
 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid var(--soft)}
@@ -237,21 +271,23 @@ body{margin:0}
   <p class="stamp" id="stamp"></p>
 </header>
 <nav class="tabs" aria-label="Rubriques"><div class="wrap"><div class="seg" id="seg" role="tablist"></div></div></nav>
-<main class="wrap" id="main" aria-live="polite"></main>
+<main class="wrap" id="main"></main>
 <footer class="wrap foot"><p>Sources : programmation (Cinefil, AlloCiné et sites des salles) ; sorties (JDS, Fever, JamBase et sites des lieux) ; sport (calendriers officiels).</p></footer>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
 (function(){
 "use strict";
-var TABS=[["tout","Tout"],["streaming","Streaming"],["cinema","Cinéma"],["sorties","Sorties"],["sport","Sport"],["avoir","À voir"],["avis","Mes avis"]];
+var TABS=[["tout","Tout"],["streaming","Streaming"],["cinema","Cinéma"],["sorties","Sorties"],["sport","Sport"],["catalogue","Catalogue"],["avoir","À voir"],["avis","Mes avis"]];
 var SECTIONS=[
   {k:"streaming",l:"Streaming",rub:["Nouveautés","Pépites en catalogue","Nouvelles saisons","Dernière chance","Si réabonnement Prime"]},
   {k:"cinema",l:"Cinéma",rub:["Sorties du mercredi","Palmarès à l'affiche"]},
   {k:"sorties",l:"Sorties",rub:["Spectacles","Concerts","Mises en vente","À réserver"]},
   {k:"sport",l:"Sport",rub:["Matchs de la semaine","Événements"]}
 ];
-var LABEL={streaming:"Streaming",cinema:"Cinéma",sorties:"Sorties",sport:"Sport",programme:"Au programme"};
+var LABEL={streaming:"Streaming",cinema:"Cinéma",sorties:"Sorties",sport:"Sport",programme:"Au programme",catalogue:"Catalogue"};
+var DOMS={streaming:1,cinema:1,sorties:1,sport:1,catalogue:1};
+function dcls(k){return DOMS[k]?" d-"+k:""}
 var AF=[["tous","Tous"],["up","Aimés"],["down","Pas pour moi"],["vu","Vus"],["cmt","Commentés"]];
 var I={
   up:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11H3.5V10H7Zm0 0 4.1-7a1.8 1.8 0 0 1 3.3 1.3L13.7 9H19a2 2 0 0 1 2 2.3l-1.3 7.6A2.5 2.5 0 0 1 17.2 21H7"/></svg>',
@@ -263,7 +299,7 @@ var I={
   play:'<svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5L8 5.5Z"/></svg>'
 };
 
-var S={salles:[],weeks:null,sel:null,selManual:false,props:null,weekData:null,retours:new Map(),filtre:"tout",avisF:"tous",open:null,drafts:{},loading:false,authError:false};
+var S={catalogue:null,catF:"toutes",more:null,salles:[],weeks:null,sel:null,selManual:false,props:null,weekData:null,retours:new Map(),filtre:"tout",avisF:"tous",open:null,drafts:{},loading:false,authError:false};
 var toastTimer=null;
 
 function $(s){return document.querySelector(s)}
@@ -308,12 +344,17 @@ function btn(act,id,on,label,icon,fillable){
 }
 function actsHTML(id,r,compact){
   r=r||{};
+  var hasC=!!(r.commentaire&&String(r.commentaire).trim());
+  var showMore=compact||S.more===id||!!r.vu||hasC||S.open===id;
+  var pend=jget(K.pending,{});
+  var st=(id in pend)?'<span class="sync" role="status">'+(navigator.onLine===false?"En attente du réseau":"Envoi…")+'</span>':"";
   return '<div class="acts'+(compact?" compact":"")+'">'+
     btn("up",id,r.avis==="up","J'aime",I.up,true)+
     btn("down",id,r.avis==="down","Pas pour moi",I.down,true)+
-    btn("vu",id,!!r.vu,"Vu",I.vu,false)+
     btn("avoir",id,!!r.aVoir,"À voir",I.avoir,true)+
-    btn("note",id,!!(r.commentaire&&String(r.commentaire).trim()),"Avis",I.note,false)+
+    (showMore?btn("vu",id,!!r.vu,"Vu",I.vu,false)+btn("note",id,hasC,"Commenter",I.note,false)
+      :'<button type="button" class="act dots" data-act="more" data-id="'+esc(id)+'" aria-label="Plus d’actions : vu, commenter" aria-expanded="false">…</button>')+
+    (compact?"":st)+
   '</div>';
 }
 function cmtHTML(id,r){
@@ -339,10 +380,11 @@ function scoreHTML(p){
     if(p.domaine==="sport") return "";
     return '<div class="score pending"><span>Note</span><span>en attente</span></div>';
   }
+  var low=p.confiance==="faible";
   function blk(lab,v){
-    return '<div class="sc'+(v===null?" na":"")+'"><span class="sc-l">'+lab+'</span><b>'+(v===null?"-":fmtNote(v))+'</b></div>';
+    return '<div class="sc'+(v===null?" na":"")+(low&&v!==null?" low":"")+'"><span class="sc-l">'+lab+'</span><b>'+(v===null?"-":fmtNote(v))+'</b></div>';
   }
-  return '<div class="scores" aria-label="'+(c!==null?"Critique "+fmtNote(c)+" sur 10. ":"")+(u!==null?"Public "+fmtNote(u)+" sur 10.":"")+'">'+blk("Critique",c)+blk("Public",u)+'</div>';
+  return '<div class="scores" aria-label="'+(c!==null?"Critique "+fmtNote(c)+" sur 10. ":"")+(u!==null?"Public "+fmtNote(u)+" sur 10.":"")+(low?" Confiance faible.":"")+'">'+(c!==null?blk("Critique",c):"")+(u!==null?blk("Public",u):"")+'</div>';
 }
 function evalHTML(p){
   var lines=[];
@@ -379,29 +421,37 @@ function parSalleHTML(items){
       .sort(function(a,b){return (prim(b)||0)-(prim(a)||0)});
     var rows=films.length?'<ul class="sl-films">'+films.map(function(p){
       var v=((p.salles||[]).find(function(x){return x.nom===s.nom})||{}).version||"";
-      return '<li><a href="#p-'+esc(p.id)+'" data-act="goto" data-id="'+esc(p.id)+'">'+esc(p.titre)+'</a><span>'+esc([v,prim(p)!==null?fmtNote(prim(p))+"/10":""].filter(Boolean).join(", "))+'</span></li>';
+      return '<li><a href="#p-'+esc(p.id)+'" data-act="goto" data-id="'+esc(p.id)+'">'+esc(p.titre)+'</a><span>'+esc([v,prim(p)!==null?fmtNote(prim(p))+(isNote(p.noteCritique)?" critique":" public"):""].filter(Boolean).join(", "))+'</span></li>';
     }).join("")+'</ul>':'<p class="sl-none">Rien de recommandé cette semaine.</p>';
     var url=safeUrl(s.url);
     return '<div class="sl"><div class="sl-head"><b>'+esc(s.nom)+'</b><span>'+esc(s.ville||"")+'</span></div>'+rows+
-      (url?'<a class="lk" href="'+esc(url)+'" target="_blank" rel="noopener">'+I.ext+'<span>Programme du jour</span></a>':"")+'</div>';
+      (url?'<a class="lk" href="'+esc(url)+'" target="_blank" rel="noopener">'+I.ext+'<span>Programme de la salle</span></a>':"")+'</div>';
   }).join("");
   return '<div class="grp"><h3>Par salle</h3><div class="sl-grid">'+tiles+'</div></div>';
 }
 function cardHTML(p){
-  var r=ret(p.id);
+  var r=ret(p.id),dom=p.domaine||"";
   var tags=(p.tags||[]).slice();
-  if(prim(p)!==null&&prim(p)>=8&&!p.base) tags.unshift("Coup de cœur");
+  if(prim(p)!==null&&prim(p)>=8&&!p.base&&p.confiance!=="faible") tags.unshift("Coup de cœur");
+  if(p.nouveau) tags.unshift("Nouveau");
+  if(p.dansListe) tags.push("Dans ta liste");
   if(p.exemple) tags.push("Exemple");
-  var meta=[p.type,p.ou,p.quand].filter(Boolean).map(function(x){return "<span>"+esc(x)+"</span>"}).join("");
-  return '<article class="card'+(r&&r.vu?" seen":"")+'" id="p-'+esc(p.id)+'">'+
-    '<div class="card-head"><div class="meta">'+meta+'</div>'+scoreHTML(p)+'</div>'+
-    '<h4>'+esc(p.titre)+'</h4>'+
+  var hasSalles=p.salles&&p.salles.length;
+  var sub=[p.type,(hasSalles||dom==="catalogue")?"":p.ou,p.annee].filter(Boolean).join(", ");
+  var raisons=(p.raisons||[]);
+  var detail=evalHTML(p)+
+    (raisons.length>1?'<ul class="why">'+raisons.slice(1).map(function(x){return "<li>"+esc(x)+"</li>"}).join("")+'</ul>':"")+
+    (tags.length?'<div class="tags">'+tags.map(function(t){return '<span class="tag'+(t==="Coup de cœur"?" inv":(t==="Nouveau"?" new":""))+'">'+esc(t)+'</span>'}).join("")+'</div>':"");
+  var label=dom==="catalogue"?(platOf(p)||"Catalogue"):(LABEL[dom]||"");
+  var when=dom==="catalogue"?"":p.quand;
+  return '<article class="card'+dcls(dom)+(r&&r.vu?" seen":"")+'" id="p-'+esc(p.id)+'">'+
+    '<div class="card-head"><div class="card-id"><p class="dom">'+esc(label)+'</p><h4>'+esc(p.titre)+'</h4></div>'+scoreHTML(p)+'</div>'+
+    ((when||sub)?'<p class="card-sub">'+(when?'<b>'+esc(when)+'</b>':"")+(when&&sub?'<br>':"")+esc(sub)+'</p>':"")+
     sallesHTML(p)+
-    evalHTML(p)+
     (p.pitch?'<p class="pitch">'+esc(p.pitch)+'</p>':"")+
-    ((p.raisons&&p.raisons.length)?'<ul class="why">'+p.raisons.map(function(x){return "<li>"+esc(x)+"</li>"}).join("")+'</ul>':"")+
-    (tags.length?'<div class="tags">'+tags.map(function(t){return '<span class="tag'+(t==="Coup de cœur"?" inv":"")+'">'+esc(t)+'</span>'}).join("")+'</div>':"")+
+    (raisons.length?'<ul class="why"><li>'+esc(raisons[0])+'</li></ul>':"")+
     linksHTML(p)+
+    (detail?'<details class="more"><summary>'+(p.critiqueDetail||p.publicDetail||p.accueil?"Détail des notes":"Plus d’infos")+'</summary><div class="more-body">'+detail+'</div></details>':"")+
     cmtHTML(p.id,r)+
     actsHTML(p.id,r,false)+
   '</article>';
@@ -412,7 +462,7 @@ function topHTML(w){
   if(!items.length) return "";
   return '<section class="sec" aria-labelledby="h-top"><div class="sec-head"><h2 id="h-top">Le top 3 du week-end</h2></div><ol class="top">'+
     items.map(function(p,i){
-      return '<li><a class="top-card" href="#p-'+esc(p.id)+'" data-act="goto" data-id="'+esc(p.id)+'">'+
+      return '<li class="'+dcls(p.domaine).trim()+'"><a class="top-card" href="#p-'+esc(p.id)+'" data-act="goto" data-id="'+esc(p.id)+'">'+
         '<span class="rank">'+(i+1)+'</span>'+
         '<span class="top-dom">'+esc(LABEL[p.domaine]||"")+'</span>'+
         '<span class="top-title">'+esc(p.titre)+'</span>'+
@@ -433,7 +483,7 @@ function progHTML(){
 function secHTML(sec){
   var items=(S.props||[]).filter(function(p){return p.domaine===sec.k});
   if(!items.length){
-    return S.filtre===sec.k?'<section class="sec"><div class="sec-head"><h2>'+sec.l+'</h2></div><p class="empty">Rien de notable cette semaine dans cette rubrique.</p></section>':"";
+    return S.filtre===sec.k?'<section class="sec'+dcls(sec.k)+'"><div class="sec-head"><h2 class="dh">'+sec.l+'</h2></div><p class="empty">Rien de notable cette semaine dans cette rubrique.</p></section>':"";
   }
   var rubOf=function(p){return p.rubrique||"Autres"};
   var extra=[];
@@ -443,8 +493,34 @@ function secHTML(sec){
     if(!g.length) return "";
     return '<div class="grp"><h3>'+esc(rb)+'</h3><div class="grid">'+g.map(cardHTML).join("")+'</div></div>';
   }).join("");
-  if(sec.k==="cinema") groups+=parSalleHTML(items);
-  return '<section class="sec" id="sec-'+sec.k+'"><div class="sec-head"><h2>'+sec.l+'</h2><p class="sec-sub">'+items.length+' proposition'+(items.length>1?"s":"")+'</p></div>'+groups+'</section>';
+  if(sec.k==="cinema") groups=parSalleHTML(items)+groups;
+  if(sec.k==="streaming"&&S.catalogue){var nc=catItems().length;if(nc)groups+='<p><button type="button" class="cat-link" data-act="gotocat">Voir le catalogue par genre ('+nc+' titres) →</button></p>'}
+  return '<section class="sec'+dcls(sec.k)+'" id="sec-'+sec.k+'"><div class="sec-head"><h2 class="dh">'+sec.l+'</h2><p class="sec-sub">'+items.length+' proposition'+(items.length>1?"s":"")+'</p></div>'+groups+'</section>';
+}
+function catItems(){
+  var c=S.catalogue; if(!c||!c.genres) return [];
+  var ref=Date.parse(String(c.maj||"").slice(0,10)+"T12:00:00Z");
+  var out=[];
+  c.genres.forEach(function(g){(g.titres||[]).forEach(function(t){
+    var a=Date.parse(String(t.ajouteLe||"")+"T12:00:00Z");
+    out.push(Object.assign({},t,{domaine:"catalogue",semaine:"catalogue",genre:g.id,genreLabel:g.label,nouveau:!isNaN(a)&&!isNaN(ref)&&ref-a<7*864e5&&ref-a>=0&&c.premiere!==true}));
+  })});
+  return out;
+}
+function platOf(t){return String(t.ou||"").split(" (")[0]}
+function catalogueHTML(){
+  var items=catItems();
+  var head='<div class="sec-head"><h2 class="dh">Catalogue</h2><p class="sec-sub">'+(items.length?items.length+" titres par genre, renouvelés chaque vendredi":"Sélection par genre")+'</p></div>';
+  if(!items.length) return '<section class="sec d-catalogue">'+head+'<p class="empty">La sélection par genre apparaîtra ici après le prochain brief.</p></section>';
+  var plats=[];items.forEach(function(t){var k=platOf(t);if(k&&plats.indexOf(k)<0)plats.push(k)});
+  if(S.catF!=="toutes"&&plats.indexOf(S.catF)<0)S.catF="toutes";
+  var chips='<div class="chips" role="group" aria-label="Filtrer par plateforme">'+[["toutes","Toutes"]].concat(plats.map(function(x){return [x,x]})).map(function(a){return '<button type="button" class="chip" data-act="catf" data-id="'+esc(a[0])+'" aria-pressed="'+(S.catF===a[0]?"true":"false")+'">'+esc(a[1])+'</button>'}).join("")+'</div>';
+  var groups=S.catalogue.genres.map(function(g){
+    var list=items.filter(function(t){return t.genre===g.id&&(S.catF==="toutes"||platOf(t)===S.catF)});
+    if(!list.length) return "";
+    return '<div class="grp"><h3>'+esc(g.label)+'</h3><div class="grid">'+list.map(cardHTML).join("")+'</div></div>';
+  }).join("");
+  return '<section class="sec d-catalogue">'+head+chips+(groups||'<p class="empty">Aucun titre sur cette plateforme.</p>')+'</section>';
 }
 function avoirHTML(){
   var list=avoirList();
@@ -479,7 +555,7 @@ function renderSeg(){
   var n=avoirList().length;
   $("#seg").innerHTML=TABS.map(function(t){
     var count=(t[0]==="avoir"&&n)?'<span class="n">'+n+'</span>':"";
-    return '<button type="button" class="tab" role="tab" data-tab="'+t[0]+'" aria-selected="'+(S.filtre===t[0]?"true":"false")+'">'+t[1]+count+'</button>';
+    return '<button type="button" class="tab'+dcls(t[0])+'" role="tab" data-tab="'+t[0]+'" aria-selected="'+(S.filtre===t[0]?"true":"false")+'">'+t[1]+count+'</button>';
   }).join("");
 }
 function renderHeader(){
@@ -500,6 +576,7 @@ function renderHeader(){
 function render(){
   var ae=document.activeElement;
   var keep=(ae&&ae.dataset&&ae.dataset.draft)?{id:ae.dataset.draft,s:ae.selectionStart,e:ae.selectionEnd}:null;
+  var keepBtn=(!keep&&ae&&ae.dataset&&ae.dataset.act&&ae.dataset.id&&ae.closest&&ae.closest("#main"))?{a:ae.dataset.act,i:ae.dataset.id}:null;
   renderSeg(); renderHeader();
   var m=$("#main"),html="";
   if(S.filtre==="reglages"){
@@ -512,6 +589,8 @@ function render(){
     html=avisHTML();
   }else if(S.filtre==="avoir"){
     html=avoirHTML();
+  }else if(S.filtre==="catalogue"){
+    html=catalogueHTML();
   }else if(!S.weeks.length){
     html='<div class="state"><h2>Le premier brief arrive vendredi</h2><p>Chaque vendredi en fin de matinée, les nouveautés de vos plateformes, les films à l’affiche dans vos salles, les spectacles, concerts et matchs de la semaine apparaîtront ici. Vous pourrez réagir à chaque proposition.</p></div>';
   }else if(S.props===null){
@@ -529,6 +608,10 @@ function render(){
     if(!html) html='<div class="state"><p>Rien de notable cette semaine.</p></div>';
   }
   m.innerHTML=html;
+  if(keepBtn){
+    var kb=m.querySelector('[data-act="'+keepBtn.a+'"][data-id="'+(window.CSS&&CSS.escape?CSS.escape(keepBtn.i):keepBtn.i)+'"]');
+    if(kb)kb.focus({preventScroll:true});
+  }
   if(keep){
     var t=m.querySelector('[data-draft="'+(window.CSS&&CSS.escape?CSS.escape(keep.id):keep.id)+'"]');
     if(t){t.focus();try{t.setSelectionRange(keep.s,keep.e)}catch(e){}}
@@ -579,6 +662,7 @@ function applyCache(){
   var c=weekCache();
   if(c.index){S.weeks=(c.index.semaines||[]).slice().sort(function(a,b){return String(b.debut).localeCompare(String(a.debut))})}
   if(c.salles)S.salles=c.salles;
+  if(c.catalogue)S.catalogue=c.catalogue;
   if(c.retours){S.retours=new Map(Object.entries(c.retours))}
   if(S.weeks&&S.weeks.length){
     if(!S.sel||!S.weeks.some(function(w){return w.id===S.sel}))S.sel=S.weeks[0].id;
@@ -612,14 +696,15 @@ function fail(e){
 function refresh(){
   if(!token()){render();return Promise.resolve()}
   S.loading=true;render();
-  return Promise.all([rawJSON("semaines/index.json"),rawJSON("config/salles.json"),loadRetours()]).then(function(r){
+  return Promise.all([rawJSON("semaines/index.json"),rawJSON("config/salles.json"),loadRetours(),rawJSON("catalogue/catalogue.json").catch(function(){return null})]).then(function(r){
     var idx=r[0]||{semaines:[]},sal=(r[1]&&Array.isArray(r[1].liste))?r[1].liste:[];
     S.authError=false;
     S.weeks=(idx.semaines||[]).slice().sort(function(a,b){return String(b.debut).localeCompare(String(a.debut))});
     if(!S.selManual||!S.weeks.some(function(w){return w.id===S.sel}))S.sel=S.weeks.length?S.weeks[0].id:null;
     S.salles=sal; S.retours=r[2]; applyPending();
     var ret={};r[2].forEach(function(v,k){ret[k]=v});
-    saveCache({index:idx,salles:sal,retours:ret});
+    S.catalogue=r[3]||null;
+    saveCache({index:idx,salles:sal,retours:ret,catalogue:S.catalogue});
     lsSet(K.sync,new Date().toISOString());
     return loadWeek(S.sel);
   }).catch(fail).then(function(){S.loading=false;render();flush()});
@@ -669,7 +754,7 @@ function flush(){
   },Promise.resolve()).catch(function(e){fail(e)}).then(function(){flushing=false;render();if(Object.keys(jget(K.pending,{})).length&&navigator.onLine!==false)setTimeout(flush,8000)});
 }
 function srcFor(id){
-  var p=(S.props||[]).find(function(x){return x.id===id});
+  var p=(S.props||[]).find(function(x){return x.id===id})||catItems().find(function(x){return x.id===id});
   if(p) return p;
   var r=ret(id);
   return r?Object.assign({id:id},r):{id:id};
@@ -725,6 +810,9 @@ document.addEventListener("click",function(e){
   if(act==="token-forget"){try{localStorage.removeItem(K.token)}catch(e){}render();return}
   if(act==="exp-save"){var dv=$("#expIn").value;if(dv)lsSet(K.exp,dv);else{try{localStorage.removeItem(K.exp)}catch(e){}}render();toast("Date enregistrée.");return}
   if(act==="avisf"){S.avisF=id;render();return}
+  if(act==="catf"){S.catF=id;render();return}
+  if(act==="gotocat"){S.filtre="catalogue";lsSet("brief.filtre","catalogue");render();var tp=$("#main").getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:Math.max(0,tp)});return}
+  if(act==="more"){S.more=id;render();var b=document.querySelector('#p-'+(window.CSS&&CSS.escape?CSS.escape(id):id)+' [data-act="vu"]');if(b)b.focus();return}
   if(act==="goto"){
     e.preventDefault();
     if(S.filtre!=="tout"){S.filtre="tout";lsSet("brief.filtre","tout");render()}

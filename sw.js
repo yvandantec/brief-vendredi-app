@@ -1,5 +1,5 @@
 /* Brief du vendredi : cache de l'app pour un usage hors ligne. Les données (api.github.com) ne passent pas par ce cache. */
-const CACHE = "brief-app-v2";
+const CACHE = "brief-app-v3";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-192.png", "icons/icon-maskable-512.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
