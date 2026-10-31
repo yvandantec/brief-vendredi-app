@@ -493,7 +493,7 @@ function secHTML(sec){
     if(!g.length) return "";
     return '<div class="grp"><h3>'+esc(rb)+'</h3><div class="grid">'+g.map(cardHTML).join("")+'</div></div>';
   }).join("");
-  if(sec.k==="cinema") groups=parSalleHTML(items)+groups;
+  if(sec.k==="cinema"&&S.filtre==="cinema") groups+=parSalleHTML(items);
   if(sec.k==="streaming"&&S.catalogue){var nc=catItems().length;if(nc)groups+='<p><button type="button" class="cat-link" data-act="gotocat">Voir le catalogue par genre ('+nc+' titres) →</button></p>'}
   return '<section class="sec'+dcls(sec.k)+'" id="sec-'+sec.k+'"><div class="sec-head"><h2 class="dh">'+sec.l+'</h2><p class="sec-sub">'+items.length+' proposition'+(items.length>1?"s":"")+'</p></div>'+groups+'</section>';
 }
@@ -598,9 +598,10 @@ function render(){
   }else{
     var w=curWeek();
     if(S.filtre==="tout"){
-      html+=topHTML(w)+progHTML();
+      html+=topHTML(w);
       SECTIONS.forEach(function(s){html+=secHTML(s)});
       if(avoirList().length) html+=avoirHTML();
+      html+=progHTML();
     }else{
       var s=SECTIONS.find(function(x){return x.k===S.filtre});
       if(s) html+=secHTML(s);
