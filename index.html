@@ -18,7 +18,7 @@
   --fg:#1d1d1f;
   --muted:#6e6e73;
   --muted-strong:#515154;
-  --c-streaming:#6a4bc4;--c-cinema:#c0392b;--c-sorties:#9a5a00;--c-sport:#23784a;--c-catalogue:#6a4bc4;
+  --c-streaming:#6a4bc4;--c-cinema:#c0392b;--c-sorties:#9a5a00;--c-sport:#23784a;--c-catalogue:#6a4bc4;--c-jeux:#0f6f7d;--c-voyages:#1f5fbf;--c-loisirs:#0f6f7d;
   --top1-bg:#1d1d1f;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;
   --line:#d2d2d7;
   --soft:#ebebef;
@@ -35,12 +35,12 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#000000;--surface:#1c1c1e;--fg:#f5f5f7;--muted:#98989d;--muted-strong:#aeaeb2;--line:#3a3a3c;--soft:#2c2c2e;--edge:#2c2c2e;
-    --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;--c-streaming:#b6a3ff;--c-cinema:#ff8f80;--c-sorties:#f0b350;--c-sport:#72d29d;--c-catalogue:#b6a3ff;--top1-bg:#2c2c2e;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;color-scheme:dark;
+    --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;--c-streaming:#b6a3ff;--c-cinema:#ff8f80;--c-sorties:#f0b350;--c-sport:#72d29d;--c-catalogue:#b6a3ff;--c-jeux:#6fd3e0;--c-voyages:#8ab4ff;--c-loisirs:#6fd3e0;--top1-bg:#2c2c2e;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#000000;--surface:#1c1c1e;--fg:#f5f5f7;--muted:#98989d;--muted-strong:#aeaeb2;--line:#3a3a3c;--soft:#2c2c2e;--edge:#2c2c2e;
-  --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;--c-streaming:#b6a3ff;--c-cinema:#ff8f80;--c-sorties:#f0b350;--c-sport:#72d29d;--c-catalogue:#b6a3ff;--top1-bg:#2c2c2e;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;color-scheme:dark;
+  --nav:rgba(0,0,0,.72);--inv-bg:#f5f5f7;--inv-fg:#1d1d1f;--inv-muted:#6e6e73;--c-streaming:#b6a3ff;--c-cinema:#ff8f80;--c-sorties:#f0b350;--c-sport:#72d29d;--c-catalogue:#b6a3ff;--c-jeux:#6fd3e0;--c-voyages:#8ab4ff;--c-loisirs:#6fd3e0;--top1-bg:#2c2c2e;--top1-fg:#f5f5f7;--top1-muted:#a1a1a6;color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--font-text);font-size:15px;line-height:1.47;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
@@ -157,14 +157,14 @@ main{padding-block:36px 72px;display:flex;flex-direction:column;gap:64px}
 .sl .lk{margin-top:auto}
 
 /* Couleurs par domaine */
-.d-streaming{--dc:var(--c-streaming)}.d-cinema{--dc:var(--c-cinema)}.d-sorties{--dc:var(--c-sorties)}.d-sport{--dc:var(--c-sport)}.d-catalogue{--dc:var(--c-catalogue)}
+.d-streaming{--dc:var(--c-streaming)}.d-cinema{--dc:var(--c-cinema)}.d-sorties{--dc:var(--c-sorties)}.d-sport{--dc:var(--c-sport)}.d-catalogue{--dc:var(--c-catalogue)}.d-jeux{--dc:var(--c-jeux)}.d-voyages{--dc:var(--c-voyages)}.d-loisirs{--dc:var(--c-loisirs)}
 .dom{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dc,var(--muted))}
 .dom::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dc,var(--muted))}
 .dom .when{font-weight:600;letter-spacing:0;text-transform:none;font-size:13px;color:var(--fg)}
 .dom .when::before{content:"";display:inline-block;width:1px;height:10px;background:var(--line);margin:0 8px 0 2px;vertical-align:-1px}
 .sec-head h2.dh{display:flex;align-items:center;gap:12px}
 .sec-head h2.dh::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--dc)}
-.tab.d-streaming[aria-selected="true"],.tab.d-cinema[aria-selected="true"],.tab.d-sorties[aria-selected="true"],.tab.d-sport[aria-selected="true"],.tab.d-catalogue[aria-selected="true"]{background:var(--dc);color:var(--bg)}
+.tab.d-streaming[aria-selected="true"],.tab.d-cinema[aria-selected="true"],.tab.d-sorties[aria-selected="true"],.tab.d-sport[aria-selected="true"],.tab.d-catalogue[aria-selected="true"],.tab.d-loisirs[aria-selected="true"]{background:var(--dc);color:var(--bg)}
 .card{border-top:3px solid var(--dc,var(--edge))}
 .card-id{display:grid;gap:6px;min-width:0}
 .card-sub{font-size:13.5px;color:var(--muted);margin-top:-4px;line-height:1.45}
@@ -272,21 +272,23 @@ body{margin:0}
 </header>
 <nav class="tabs" aria-label="Rubriques"><div class="wrap"><div class="seg" id="seg" role="tablist"></div></div></nav>
 <main class="wrap" id="main"></main>
-<footer class="wrap foot"><p>Sources : programmation (Cinefil, AlloCiné et sites des salles) ; sorties (JDS, Fever, JamBase et sites des lieux) ; sport (calendriers officiels).</p></footer>
+<footer class="wrap foot"><p>Sources : programmation (Cinefil, AlloCiné et sites des salles) ; sorties (JDS, Fever, JamBase et sites des lieux) ; sport et padel (calendriers officiels, Premier Padel) ; jeux de société (Gus &amp; Co, Le dépuncheur, chaînes suivies) ; voyages (presse voyage, offices de tourisme).</p></footer>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script>
 (function(){
 "use strict";
-var TABS=[["tout","Tout"],["streaming","Streaming"],["cinema","Cinéma"],["sorties","Sorties"],["sport","Sport"],["catalogue","Catalogue"],["avoir","À voir"],["avis","Mes avis"]];
+var TABS=[["tout","Tout"],["streaming","Streaming"],["cinema","Cinéma"],["sorties","Sorties"],["sport","Sport"],["loisirs","Loisirs"],["catalogue","Catalogue"],["avoir","À voir"],["avis","Mes avis"]];
 var SECTIONS=[
   {k:"streaming",l:"Streaming",rub:["Nouveautés","Pépites en catalogue","Nouvelles saisons","Dernière chance","Si réabonnement Prime"]},
   {k:"cinema",l:"Cinéma",rub:["Sorties du mercredi","Palmarès à l'affiche"]},
   {k:"sorties",l:"Sorties",rub:["Spectacles","Concerts","Mises en vente","À réserver"]},
-  {k:"sport",l:"Sport",rub:["Matchs de la semaine","Événements"]}
+  {k:"sport",l:"Sport",rub:["Matchs de la semaine","Événements","Padel à la télé","Mon club"]},
+  {k:"jeux",l:"Jeux de société",rub:["Le buzz du moment","Critiques à lire ou à voir","Festivals et événements"]},
+  {k:"voyages",l:"Voyages",rub:["Destination à la une","Escapades depuis Marseille","En famille","Conseils et bons plans"]}
 ];
-var LABEL={streaming:"Streaming",cinema:"Cinéma",sorties:"Sorties",sport:"Sport",programme:"Au programme",catalogue:"Catalogue"};
-var DOMS={streaming:1,cinema:1,sorties:1,sport:1,catalogue:1};
+var LABEL={streaming:"Streaming",cinema:"Cinéma",sorties:"Sorties",sport:"Sport",programme:"Au programme",catalogue:"Catalogue",jeux:"Jeux",voyages:"Voyages"};
+var DOMS={streaming:1,cinema:1,sorties:1,sport:1,catalogue:1,jeux:1,voyages:1,loisirs:1};
 function dcls(k){return DOMS[k]?" d-"+k:""}
 var AF=[["tous","Tous"],["up","Aimés"],["down","Pas pour moi"],["vu","Vus"],["cmt","Commentés"]];
 var I={
@@ -377,7 +379,7 @@ function scoreHTML(p){
   var c=isNote(p.noteCritique)?p.noteCritique:(isNote(p.note)&&!isNote(p.notePublic)?p.note:null);
   var u=isNote(p.notePublic)?p.notePublic:null;
   if(c===null&&u===null){
-    if(p.domaine==="sport") return "";
+    if(p.domaine==="sport"||p.domaine==="jeux"||p.domaine==="voyages") return "";
     return '<div class="score pending"><span>Note</span><span>en attente</span></div>';
   }
   var low=p.confiance==="faible";
@@ -497,6 +499,23 @@ function secHTML(sec){
   if(sec.k==="streaming"&&S.catalogue){var nc=catItems().length;if(nc)groups+='<p><button type="button" class="cat-link" data-act="gotocat">Voir le catalogue par genre ('+nc+' titres) →</button></p>'}
   return '<section class="sec'+dcls(sec.k)+'" id="sec-'+sec.k+'"><div class="sec-head"><h2 class="dh">'+sec.l+'</h2><p class="sec-sub">'+items.length+' proposition'+(items.length>1?"s":"")+'</p></div>'+groups+'</section>';
 }
+function prochainVoyages(){
+  var d=new Date(),y=d.getFullYear(),m=d.getMonth();
+  function firstFri(y,m){var x=new Date(y,m,1);while(x.getDay()!==5)x.setDate(x.getDate()+1);return x}
+  var f=firstFri(y,m); if(f<new Date(d.getFullYear(),d.getMonth(),d.getDate())) f=firstFri(m===11?y+1:y,(m+1)%12);
+  return f.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+}
+function loisirsHTML(){
+  var out="";
+  ["jeux","voyages"].forEach(function(k){
+    var sec=SECTIONS.find(function(x){return x.k===k});
+    var has=(S.props||[]).some(function(p){return p.domaine===k});
+    if(has){out+=secHTML(sec);return}
+    var msg=k==="voyages"?"Le dossier voyages paraît le premier vendredi du mois : prochain dossier "+prochainVoyages()+".":"Rien de notable cette semaine en jeux de société.";
+    out+='<section class="sec d-'+k+'"><div class="sec-head"><h2 class="dh">'+sec.l+'</h2></div><p class="empty">'+esc(msg)+'</p></section>';
+  });
+  return out;
+}
 function catItems(){
   var c=S.catalogue; if(!c||!c.genres) return [];
   var ref=Date.parse(String(c.maj||"").slice(0,10)+"T12:00:00Z");
@@ -602,6 +621,8 @@ function render(){
       SECTIONS.forEach(function(s){html+=secHTML(s)});
       if(avoirList().length) html+=avoirHTML();
       html+=progHTML();
+    }else if(S.filtre==="loisirs"){
+      html+=loisirsHTML();
     }else{
       var s=SECTIONS.find(function(x){return x.k===S.filtre});
       if(s) html+=secHTML(s);
