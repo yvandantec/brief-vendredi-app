@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<title>Brief du vendredi</title>
+<title>Carte Blanche</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -260,14 +260,14 @@ body{margin:0}
 <body>
 <header class="hero wrap">
   <div class="hero-top">
-    <h1 id="titre">Brief du vendredi</h1>
+    <h1 id="titre">Carte Blanche</h1>
     <div class="hacts">
     <label class="pick" for="week" id="pickWrap" hidden><span class="sr">Semaine</span><select id="week"></select><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></label>
     <button type="button" class="hbtn" id="btnRefresh" data-act="refresh" aria-label="Actualiser"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg></button>
     <button type="button" class="hbtn" id="btnSet" data-act="reglages" aria-label="Réglages" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></button>
     </div>
   </div>
-  <p class="lede" id="lede">Streaming, cinéma, sorties et sport autour d'Aix et de Marseille, chaque vendredi matin.</p>
+  <p class="lede" id="lede">Streaming, cinéma, sorties, sport, jeux et voyages autour d'Aix et de Marseille, nouvelle édition chaque vendredi.</p>
   <p class="stamp" id="stamp"></p>
 </header>
 <nav class="tabs" aria-label="Rubriques"><div class="wrap"><div class="seg" id="seg" role="tablist"></div></div></nav>
@@ -530,7 +530,7 @@ function platOf(t){return String(t.ou||"").split(" (")[0]}
 function catalogueHTML(){
   var items=catItems();
   var head='<div class="sec-head"><h2 class="dh">Catalogue</h2><p class="sec-sub">'+(items.length?items.length+" titres par genre, renouvelés chaque vendredi":"Sélection par genre")+'</p></div>';
-  if(!items.length) return '<section class="sec d-catalogue">'+head+'<p class="empty">La sélection par genre apparaîtra ici après le prochain brief.</p></section>';
+  if(!items.length) return '<section class="sec d-catalogue">'+head+'<p class="empty">La sélection par genre apparaîtra ici après la prochaine édition.</p></section>';
   var plats=[];items.forEach(function(t){var k=platOf(t);if(k&&plats.indexOf(k)<0)plats.push(k)});
   if(S.catF!=="toutes"&&plats.indexOf(S.catF)<0)S.catF="toutes";
   var chips='<div class="chips" role="group" aria-label="Filtrer par plateforme">'+[["toutes","Toutes"]].concat(plats.map(function(x){return [x,x]})).map(function(a){return '<button type="button" class="chip" data-act="catf" data-id="'+esc(a[0])+'" aria-pressed="'+(S.catF===a[0]?"true":"false")+'">'+esc(a[1])+'</button>'}).join("")+'</div>';
@@ -579,8 +579,8 @@ function renderSeg(){
 }
 function renderHeader(){
   var w=curWeek();
-  $("#titre").textContent="Brief du vendredi"+(w?fmtVendredi(w.debut):"");
-  $("#lede").textContent=w&&w.resume?w.resume:"Streaming, cinéma, sorties et sport autour d’Aix et de Marseille, chaque vendredi matin.";
+  $("#titre").textContent="Carte Blanche"+(w?" du"+fmtVendredi(w.debut):"");
+  $("#lede").textContent=w&&w.resume?w.resume:"Streaming, cinéma, sorties, sport, jeux et voyages autour d’Aix et de Marseille, nouvelle édition chaque vendredi.";
   var g=w?fmtStamp(w.genereLe):"",m=w&&w.majLe?fmtStamp(w.majLe):"";
   var st=(g?"Généré le "+g:"")+(m?(g?", mis à jour le ":"Mis à jour le ")+m:"");
   $("#stamp").innerHTML=(st?"<span>"+esc(st)+"</span>":"")+(w&&w.exemple?'<span class="tag">Données d’exemple</span>':"")+(Object.keys(jget(K.pending,{})).length?'<span class="badge">Avis en attente d’envoi</span>':"")+(daysLeft()!==null&&daysLeft()<=15?'<span class="badge">Jeton à renouveler</span>':"");
@@ -601,9 +601,9 @@ function render(){
   if(S.filtre==="reglages"){
     html=settingsHTML();
   }else if(!token()&&S.weeks===null){
-    html='<div class="state"><h2>Bienvenue</h2><p>Pour afficher le brief et enregistrer vos avis, saisissez votre jeton GitHub dans les réglages. Il reste sur cet appareil.</p><div class="cmt-btns" style="justify-content:flex-start"><button type="button" class="btn solid" data-act="reglages">Ouvrir les réglages</button></div></div>';
+    html='<div class="state"><h2>Bienvenue</h2><p>Pour afficher Carte Blanche et enregistrer vos avis, saisissez votre jeton GitHub dans les réglages. Il reste sur cet appareil.</p><div class="cmt-btns" style="justify-content:flex-start"><button type="button" class="btn solid" data-act="reglages">Ouvrir les réglages</button></div></div>';
   }else if(S.weeks===null){
-    html='<div class="state"><p>Chargement du brief…</p></div>';
+    html='<div class="state"><p>Chargement de la semaine…</p></div>';
   }else if(S.filtre==="avis"){
     html=avisHTML();
   }else if(S.filtre==="avoir"){
@@ -611,7 +611,7 @@ function render(){
   }else if(S.filtre==="catalogue"){
     html=catalogueHTML();
   }else if(!S.weeks.length){
-    html='<div class="state"><h2>Le premier brief arrive vendredi</h2><p>Chaque vendredi en fin de matinée, les nouveautés de vos plateformes, les films à l’affiche dans vos salles, les spectacles, concerts et matchs de la semaine apparaîtront ici. Vous pourrez réagir à chaque proposition.</p></div>';
+    html='<div class="state"><h2>La première édition arrive vendredi</h2><p>Chaque vendredi en fin de matinée, les nouveautés de vos plateformes, les films à l’affiche dans vos salles, les spectacles, concerts, matchs et jeux de société de la semaine apparaîtront ici. Vous pourrez réagir à chaque proposition.</p></div>';
   }else if(S.props===null){
     html='<div class="state"><p>Chargement de la semaine…</p></div>';
   }else{

@@ -1,7 +1,7 @@
 {
-  "name": "Brief du vendredi",
-  "short_name": "Brief",
-  "description": "Streaming, cinéma, sorties et sport autour d'Aix et de Marseille, chaque vendredi.",
+  "name": "Carte Blanche",
+  "short_name": "Carte Blanche",
+  "description": "Loisirs de la semaine : streaming, cinéma, sorties, sport, jeux et voyages autour d'Aix et de Marseille.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",

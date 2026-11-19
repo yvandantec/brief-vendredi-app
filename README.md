@@ -1,6 +1,8 @@
-# Brief du vendredi : app
+# Carte Blanche : app
 
-Application web installable (PWA) qui affiche le Brief du vendredi et enregistre les avis.
+Application web installable (PWA) qui affiche Carte Blanche (ex-Brief du vendredi), le programme loisirs de la semaine, et enregistre les avis.
+
+Le nom technique du dépôt et l'adresse restent `brief-vendredi-app` : les changer casserait l'app installée et le jeton.
 
 - Adresse : https://yvandantec.github.io/brief-vendredi-app/
 - Données : dépôt privé `brief-vendredi-data`, lu et écrit via l'API GitHub avec un jeton « fine-grained » saisi dans les réglages de l'app (stocké uniquement sur l'appareil).
