@@ -11,5 +11,5 @@ Le nom technique du dépôt et l'adresse restent `brief-vendredi-app` : les chan
 | Fichier | Rôle |
 |---|---|
 | `index.html` | L'app : top 3, onglets Streaming, Cinéma (avec vue « Par salle »), Sorties, Sport, Catalogue par genre, À voir, Mes avis ; envoi des avis ; réglages |
-| `manifest.webmanifest`, `icons/` | Installation sur l'écran d'accueil ; icône « éventail de cartes » (19/11/2026), sources SVG dans `icons/src/` |
+| `manifest.webmanifest`, `icons/` | Installation sur l'écran d'accueil ; icône « éventail sobre » sombre (21/11/2026), favicon clair ou sombre selon le thème, silhouette monochrome pour les icônes à thème d'Android ; sources SVG dans `icons/src/`, anciennes icônes dans `icons/archive/` |
 | `sw.js` | Fonctionnement hors ligne (cache de l'app) |

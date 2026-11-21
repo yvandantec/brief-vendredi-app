@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><mask id="m"><rect width="512" height="512" fill="#fff"/>
+<g transform="translate(256 256) scale(0.7000) translate(-255.5 -251)"><g transform="rotate(0 256 448)"><rect x="160" y="96" width="192" height="268" rx="26" fill="#000"/></g></g></mask>
+<mask id="m2"><rect width="512" height="512" fill="#fff"/><g transform="translate(256 256) scale(0.7000) translate(-255.5 -251)"><rect x="196" y="320" width="120" height="12" rx="6" fill="#000"/></g></mask></defs>
+<g transform="translate(256 256) scale(0.7000) translate(-255.5 -251)"><g mask="url(#m)" opacity=".55"><g transform="rotate(-22 256 448)"><rect x="160" y="104" width="192" height="268" rx="26" fill="#fff"/></g><g transform="rotate(22 256 448)"><rect x="160" y="104" width="192" height="268" rx="26" fill="#fff"/></g></g></g>
+<g mask="url(#m2)"><g transform="translate(256 256) scale(0.7000) translate(-255.5 -251)"><g transform="rotate(0 256 448)"><rect x="160" y="96" width="192" height="268" rx="26" fill="#fff"/></g></g></g></svg>

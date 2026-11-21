@@ -1,6 +1,6 @@
 /* Carte Blanche : cache de l'app pour un usage hors ligne. Les données (api.github.com) ne passent pas par ce cache. */
-const CACHE = "brief-app-v6";
-const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/cb-icon-192.png", "icons/cb-icon-512.png", "icons/cb-icon-maskable-192.png", "icons/cb-icon-maskable-512.png", "icons/apple-touch-icon.png", "icons/favicon-32.png"];
+const CACHE = "brief-app-v7";
+const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/cb2-icon-192.png", "icons/cb2-icon-512.png", "icons/cb2-icon-maskable-192.png", "icons/cb2-icon-maskable-512.png", "icons/cb2-icon-monochrome-192.png", "icons/cb2-apple-touch-icon.png", "icons/cb2-favicon-light-32.png", "icons/cb2-favicon-dark-32.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
 });
